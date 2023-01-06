@@ -28,8 +28,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --no-script
 RUN apk add --no-cache nginx
 ADD symfony.conf /etc/nginx/http.d/default.conf
 
-EXPOSE 80
-EXPOSE 443
-
+EXPOSE 80 443
 STOPSIGNAL SIGTERM
+
 CMD ["/bin/sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
