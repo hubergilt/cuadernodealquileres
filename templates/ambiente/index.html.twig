@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Indice de Ambiente{% endblock %}
+
+{% block body %}
+    <h1>Indice de Ambiente</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Piso</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Arendatario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for ambiente in lista['ambientes'] %}
+            <tr>
+                <td>{{ ambiente.id }}</td>
+                <td>{{ ambiente.nombre }}</td>
+                <td>{{ ambiente.piso }}</td>
+                <td>{{ ambiente.precio }}</td>
+                <td>{{ ambiente.estado }}</td>
+                <td>{{ lista['arrendatarios'][loop.index0] }}</td>
+                <td>
+                    <button type="button" class="btn btn-default btn-sm">
+                        <a href="{{ path('app_ambiente_show', {'id': ambiente.id}) }}">
+                            Mostrar <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+                    </button>
+
+                    <button type="button" class="btn btn-default btn-sm">
+                        <a href="{{ path('app_ambiente_edit', {'id': ambiente.id}) }}">
+                            Editar <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </button>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+
+    <div class="d-grid d-md-flex justify-content-md-end">
+        <a href="{{ path('app_ambiente_new') }}">
+            <button class="btn btn-lg btn-primary" type="submit">
+                Crear nuevo
+            </button>
+        </a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombres</th>
+            <th>Paterno</th>
+            <th>Materno</th>
+            <th>Dni</th>
+            <th>Ambientes</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for arrendatario in result %}
+        <p>
+            <td>{{ arrendatario.id }}</td>
+            <td>{{ arrendatario.nombres }}</td>
+            <td>{{ arrendatario.paterno }}</td>
+            <td>{{ arrendatario.materno }}</td>
+            <td>{{ arrendatario.dni }}</td>
+            <td>
+                {% for ambiente in arrendatario.ambientes %}
+                    {{ ambiente }}<br>
+                {% endfor %}
+            </td>
+            <td>
+
+                <button type="button" class="btn btn-default btn-sm">
+                    <a href="{{ path('app_arrendatario_show', {'id': arrendatario.id}) }}">                           
+                        Mostrar <span class="glyphicon glyphicon-eye-open"></span> 
+                    </a>
+                </button>
+
+                <button type="button" class="btn btn-default btn-sm">
+                    <a href="{{ path('app_arrendatario_edit', {'id': arrendatario.id}) }}">
+                        Editar <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                </button>
+
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Indice de Arrendatario{% endblock %}
+
+{% block body %}
+    <h1>Indice de Arrendatario</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombres</th>
+                <th>Paterno</th>
+                <th>Materno</th>
+                <th>Dni</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for arrendatario in arrendatarios %}
+            <tr>
+                <td>{{ arrendatario.id }}</td>
+                <td>{{ arrendatario.nombres }}</td>
+                <td>{{ arrendatario.paterno }}</td>
+                <td>{{ arrendatario.materno }}</td>
+                <td>{{ arrendatario.dni }}</td>
+                <td>
+
+                    <button type="button" class="btn btn-default btn-sm">
+                        <a href="{{ path('app_arrendatario_show', {'id': arrendatario.id}) }}">                           
+                            Mostrar <span class="glyphicon glyphicon-eye-open"></span> 
+                        </a>
+                    </button>
+   
+                    <button type="button" class="btn btn-default btn-sm">
+                        <a href="{{ path('app_arrendatario_edit', {'id': arrendatario.id}) }}">
+                            Editar <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </button>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="d-grid d-md-flex justify-content-md-end">
+        <a href="{{ path('app_arrendatario_new') }}">
+            <button class="btn btn-lg btn-primary" type="submit">
+                Crear Nuevo
+            </button>
+        </a>
+    </div>
+
+{% endblock %}

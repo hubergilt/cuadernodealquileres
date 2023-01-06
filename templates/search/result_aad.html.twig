@@ -1,0 +1,68 @@
+<div id="tableResult">
+
+    {# total items count #}
+    {% set ambientes_cnt = 0 %}
+    {% set depositos_cnt = 0 %}    
+    {% for arrendatario in result %}
+        {% set ambientes_cnt = ambientes_cnt + arrendatario.ambientes|length %}
+        {% set depositos_cnt = depositos_cnt + arrendatario.depositos|length %}
+    {% endfor %}
+    <div class="p-3 text-end">
+        Total de 
+        <b> {{ result|length }} </b> arrendatarios,
+        <b> {{ ambientes_cnt }} </b> ambientes y
+        <b> {{ depositos_cnt }} </b> depositos
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Arrendatario</th>
+                <th>Ambiente</th>
+                <th>Mes</th>
+                <th>Año</th>
+                <th>Deposito</th>                
+                <th>Fecha Deposito</th>                
+                <th>Observacion</th>                
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for arrendatario in result %}
+                {% for deposito in arrendatario.depositos %}
+                    <tr>
+                        <td>{{ deposito.id }}</td>
+                        <td>{{ arrendatario }}</td>
+                        <td>{{ deposito.ambiente }}</td>
+                        <td>{{ deposito.mes }}</td>
+                        <td>{{ deposito.anio }}</td>
+                        <td class="text-end">
+                            {{ deposito.monto }}
+                        </td>
+                        <td>{{ deposito.fechaDeposito ? deposito.fechaDeposito|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ deposito.observacion }}</td>           
+                        <td>
+                            <button type="button" class="btn btn-default btn-sm">
+                                <a href="{{ path('app_deposito_show', {'id': deposito.id}) }}">                           
+                                    Mostrar <span class="glyphicon glyphicon-eye-open"></span> 
+                                </a>
+                            </button>
+           
+                            <button type="button" class="btn btn-default btn-sm">
+                                <a href="{{ path('app_deposito_edit', {'id': deposito.id}) }}">
+                                    Editar <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>

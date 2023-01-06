@@ -1,0 +1,357 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Buscar Arrendatario con Ambiente y Deposito{% endblock %}
+
+{% block body %}
+    <h1 class="p-3 text-center"><span id="search">2</span>. Buscar de Arrendatario con Ambiente y Deposito</h1>
+
+    {{ form_start(form, {'method':'GET','action':'#'}) }}
+
+    <div class="container pb-1">
+
+        <div class="row justify-content-md-center">
+
+            <div class="col col-md-auto">
+                <div class="d-flex flex-row">
+                    <div class="centrar">
+                        <i class="fa fa-user"></i>
+                        {{ form_label(form.arrendatario, 'Filtrar Arrendatario',
+                            {
+                                'label_attr': 
+                                    {
+                                        'class': 'centrar'
+                                    }
+                            })
+                        }}                        
+                    </div>
+                    <div class="p-2 center"><input class="form-check-input" type="checkbox" value="" id="CheckArren"></div>
+                    <div class="centrar">{{ form_errors(form.arrendatario) }}</div> 
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="centrar">
+                    {{ form_widget(form.arrendatario,
+                        {
+                            'attr':
+                            {
+                                'class':'form-select form-select-lg',
+                                'aria-label':'.form-select-lg',
+                            },
+                            'id':'SelectArren',
+                            'disabled':'disabled',
+                        }) 
+                    }}
+                </div>
+            </div>
+
+            <div class="col col-md-auto">
+                <div class="d-flex flex-row">
+                    <div class="centrar">
+                        <i class="fa fa-home"></i> 
+                        {{ form_label(form.ambiente, 'Filtrar Ambiente',
+                            {
+                                'label_attr': 
+                                    {
+                                        'class': 'centrar'
+                                    }
+                            })
+                        }}
+                    </div>
+                    <div class="p-2 center"><input class="form-check-input" type="checkbox" value="" id="CheckAmbi"></div>
+                    <div class="centrar">{{ form_errors(form.ambiente) }}</div>                                
+                </div>  
+            </div>
+
+            <div class="col">
+                <div class="centrar">
+                    {{ form_widget(form.ambiente,
+                        {
+                            'attr':
+                            {
+                                'class':'form-select form-select-lg',
+                                'aria-label':'.form-select-lg',
+                            },
+                            'id':'SelectAmbi',
+                            'disabled':'disabled',
+                        }) 
+                    }}
+                </div>            
+            </div>
+
+            <div class="col col-md-auto">
+                <div class="d-flex flex-row">
+                    <div class="centrar">
+                        <i class="fa fa-calendar"></i> 
+                        {{ form_label(form.meses, 'Filtrar Mes',
+                            {
+                                'label_attr': 
+                                    {
+                                        'class': 'centrar'
+                                    }
+                            })
+                        }}
+                    </div>
+                    <div class="p-2 center"><input class="form-check-input" type="checkbox" value="" id="CheckMes"></div>
+                    <div class="centrar">{{ form_errors(form.meses) }}</div>
+                    <div class="centrar">
+                        {{ form_widget(form.meses,
+                            {
+                                'attr':
+                                {
+                                    'class':'form-select form-select-lg',
+                                    'aria-label':'.form-select-lg',
+                                },
+                                'id':'SelectMes',
+                                'disabled':'disabled',
+                            }) 
+                        }}
+                    </div>                                 
+                </div>  
+            </div>
+
+            <div class="col col-md-auto">
+                <div class="d-flex flex-row">
+                    <div class="centrar">
+                        <i class="fa fa-calendar-o"></i> 
+                        {{ form_label(form.anios, 'Filtrar Año',
+                            {
+                                'label_attr': 
+                                    {
+                                        'class': 'centrar'
+                                    }
+                            })
+                        }}
+                    </div>
+                    <div class="p-2 center"><input class="form-check-input" type="checkbox" value="" id="CheckAnio"></div>
+                    <div class="centrar">{{ form_errors(form.meses) }}</div>
+                    <div class="centrar">
+                        {{ form_widget(form.anios,
+                            {
+                                'attr':
+                                {
+                                    'class':'form-select form-select-lg',
+                                    'aria-label':'.form-select-lg',
+                                },
+                                'id':'SelectAnio',
+                                'disabled':'disabled',
+                            }) 
+                        }}
+                    </div>                                 
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row justify-content-md-center pt-2">       
+
+            <div class="col col-md-auto">
+                <div class="d-flex flex-row">
+
+                    <div class="centrar">
+                        <i class="fa fa-calendar-check-o"></i>
+                        Filtra Periodo                
+                    </div>
+
+                    <div class="p-2 centrar">
+                        <input class="form-check-input" type="checkbox" value="" id="CheckPeriodo">                
+                    </div>
+
+                    <div class="centrar">                   
+                        <i class="fa fa-calendar"></i>
+                        {{ form_label(form.meses_i, 'Mes inicial',
+                            {
+                                'label_attr': 
+                                    {
+                                        'class': 'centrar'
+                                    }
+                            })
+                        }}                                                       
+                    </div>
+
+                    <div class="centrar">{{ form_errors(form.meses_i) }}</div>
+                    <div class="centrar">
+                        {{ form_widget(form.meses_i,
+                            {
+                                'attr':
+                                {
+                                    'class':'form-select form-select-lg',
+                                    'aria-label':'.form-select-lg',
+                                },
+                                'id':'SelectMes_i',
+                                'disabled':'disabled',
+                            }) 
+                        }}
+                    </div>                                                 
+                </div>
+            </div>
+
+            <div class="col col-md-auto">
+                <div class="d-flex flex-row">
+                    <div class="centrar">
+                        <i class="fa fa-calendar-times-o"></i>
+                        {{ form_label(form.anios_i, 'Año inicial',
+                            {
+                                'label_attr': 
+                                    {
+                                        'class': 'centrar'
+                                    }
+                            })
+                        }}                                                        
+                    </div>
+
+                    <div class="centrar">{{ form_errors(form.anios_i) }}</div>
+                    <div class="centrar">
+                        {{ form_widget(form.anios_i,
+                            {
+                                'attr':
+                                {
+                                    'class':'form-select form-select-lg',
+                                    'aria-label':'.form-select-lg',
+                                },
+                                'id':'SelectAnio_i',
+                                'disabled':'disabled',
+                            }) 
+                        }}
+                    </div>
+                                                    
+                </div>
+            </div>
+
+            <div class="col col-md-auto">
+                <div class="d-flex flex-row">
+                    <div class="centrar">
+                        <i class="fa fa-calendar-minus-o"></i>
+                        {{ form_label(form.meses_f, 'Mes Final',
+                            {
+                                'label_attr': 
+                                    {
+                                        'class': 'centrar'
+                                    }
+                            })
+                        }}                                                        
+                    </div>
+
+                    <div class="centrar">{{ form_errors(form.meses_f) }}</div>
+                    <div class="centrar">
+                        {{ form_widget(form.meses_f,
+                            {
+                                'attr':
+                                {
+                                    'class':'form-select form-select-lg',
+                                    'aria-label':'.form-select-lg',
+                                },
+                                'id':'SelectMes_f',
+                                'disabled':'disabled',
+                            }) 
+                        }}
+                    </div>                                                 
+                </div>
+            </div>
+
+            <div class="col col-md-auto">
+                <div class="d-flex flex-row">
+                    <div class="centrar">
+                        <i class="fa fa-calendar-plus-o"></i>
+                        {{ form_label(form.anios_f, 'Año Final',
+                            {
+                                'label_attr': 
+                                    {
+                                        'class': 'centrar'
+                                    }
+                            })
+                        }}                                                         
+                    </div>
+
+                    <div class="centrar">{{ form_errors(form.anios_f) }}</div>
+                    <div class="centrar">
+                        {{ form_widget(form.anios_f,
+                            {
+                                'attr':
+                                {
+                                    'class':'form-select form-select-lg',
+                                    'aria-label':'.form-select-lg',
+                                },
+                                'id':'SelectAnio_f',
+                                'disabled':'disabled',
+                            }) 
+                        }}
+                    </div>                                                  
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    {{ form_end(form) }}   
+
+    <div id="tableResult">
+
+    {# total items count #}
+    {% set ambientes_cnt = 0 %}
+    {% set depositos_cnt = 0 %}    
+    {% for arrendatario in result %}
+        {% set ambientes_cnt = ambientes_cnt + arrendatario.ambientes|length %}
+        {% set depositos_cnt = depositos_cnt + arrendatario.depositos|length %}
+    {% endfor %}
+    <div class="p-3 text-end">
+        Total de 
+        <b> {{ result|length }} </b> arrendatarios,
+        <b> {{ ambientes_cnt }} </b> ambientes y
+        <b> {{ depositos_cnt }} </b> depositos
+    </div> 
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Arrendatario</th>
+                <th>Ambiente</th>
+                <th>Mes</th>
+                <th>Año</th>
+                <th>Deposito</th>
+                <th>Fecha Deposito</th>                
+                <th>Observacion</th>                              
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for arrendatario in result %}
+                {% for deposito in arrendatario.depositos %}
+                    <tr>
+                        <td>{{ deposito.id }}</td>
+                        <td>{{ arrendatario }}</td>
+                        <td>{{ deposito.ambiente }}</td>
+                        <td>{{ deposito.mes }}</td>
+                        <td>{{ deposito.anio }}</td>
+                        <td class="text-end">
+                            {{ deposito.monto }}
+                        </td> 
+                        <td>{{ deposito.fechaDeposito ? deposito.fechaDeposito|date('Y-m-d H:i:s') : '' }}</td>                        
+                        <td>{{ deposito.observacion }}</td>                             
+                        <td>
+                            <button type="button" class="btn btn-default btn-sm">
+                                <a href="{{ path('app_deposito_show', {'id': deposito.id}) }}">                           
+                                    Mostrar <span class="glyphicon glyphicon-eye-open"></span> 
+                                </a>
+                            </button>
+           
+                            <button type="button" class="btn btn-default btn-sm">
+                                <a href="{{ path('app_deposito_edit', {'id': deposito.id}) }}">
+                                    Editar <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+
+{% endblock %}

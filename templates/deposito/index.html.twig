@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Indice de Deposito{% endblock %}
+
+{% block body %}
+    <h1>Indice de Deposito</h1>
+
+    {# total items count #}
+    <div class="text-end">
+        Total de <b>{{ pagination.getTotalItemCount }}</b> depositos
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'deposito.id') }}</th>
+                <th>Monto</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Anio', 'deposito.anio') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Mes', 'deposito.mes') }}</th>                
+                <th>Observacion</th>
+                <th>{{ knp_pagination_sortable(pagination, 'FechaDeposito', 'deposito.fechaDeposito') }}</th>                
+                <th>Arrendatario</th>
+                <th>Ambiente</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for deposito in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ deposito.id }}</td>
+                <td>{{ deposito.monto }}</td>
+                <td>{{ deposito.anio }}</td>
+                <td>{{ deposito.mes }}</td>
+                <td>{{ deposito.observacion }}</td>
+                <td>{{ deposito.fechaDeposito ? deposito.fechaDeposito|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ deposito.jarrendatario }}</td>
+                <td>{{ deposito.jambiente }}</td>
+
+                <td>
+
+                    <button type="button" class="btn btn-default btn-sm">
+                        <a href="{{ path('app_deposito_show', {'id': deposito.id}) }}">                           
+                            Mostrar <span class="glyphicon glyphicon-eye-open"></span> 
+                        </a>
+                    </button>
+   
+                    <button type="button" class="btn btn-default btn-sm">
+                        <a href="{{ path('app_deposito_edit', {'id': deposito.id}) }}">
+                            Editar <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </button>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+    <div class="d-grid d-md-flex justify-content-md-end">
+        <a href="{{ path('app_deposito_new') }}">
+            <button class="btn btn-lg btn-primary" type="submit">
+                Crear Nuevo
+            </button>
+        </a>
+    </div>
+
+{% endblock %}

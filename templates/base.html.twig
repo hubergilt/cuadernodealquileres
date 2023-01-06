@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cuaderno de Alquileres</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% block stylesheets %}
+      {{ encore_entry_link_tags('app') }}
+  {% endblock %}
+
+</head>
+<body>
+
+<div class="container">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><span class="logo">GL</span>Cuaderno de Alquileres</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    
+      <ul class="navbar-nav nav-pills ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a href="/arrendatario">
+            <button type="button" class="btn btn-lg btn-primary m-1">
+              <span class="glyphicon glyphicon-user"></span> Arrendatario
+            </button>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/ambiente">
+            <button type="button" class="btn btn-lg btn-primary m-1">
+              <span class="glyphicon glyphicon-home"></span> Ambiente
+            </button>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/deposito">
+            <button type="button" class="btn btn-lg btn-primary m-1">
+              <span class="glyphicon glyphicon-usd"></span> Deposito
+            </button>
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <button type="button" class="dropdown-toggle btn btn-lg btn-primary m-1" aria-current="page" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="glyphicon glyphicon-search"></span> Buscar</button>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="/searchByArrenAmb">
+                <span class="glyphicon glyphicon-leaf"></span> Arrendatario-Ambiente
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item" href="/searchByArrenAmbDepo">
+                <span class="glyphicon glyphicon-fire"></span> Arrendatario-Ambiente-Deposito
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item" href="/searchByAmbDepo">
+                <span class="glyphicon glyphicon-flash"></span> Ambiente-Deposito
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <button type="button" class="dropdown-toggle btn btn-lg btn-primary m-1" aria-current="page" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="glyphicon glyphicon-log-in"></span> Entrar</button>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item disabled" href="/register">
+                <span class="glyphicon glyphicon-cog"></span> Registro
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/logout">
+              <span class="glyphicon glyphicon-log-out"></span> Salir
+              </a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+        {% block body %}{% endblock %}
+
+</div>
+
+  {% block javascripts %}
+      {{ encore_entry_script_tags('app') }}
+  {% endblock %}
+
+</body>
+</html>
